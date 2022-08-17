@@ -21,6 +21,7 @@ class User extends Authenticatable
         'surname',
         'email',
         'password',
+        'active'
     ];
 
     /**
@@ -42,8 +43,41 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles(){
+    public function roles()
+    {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function getMaxRole() : string
+    {
+        if($this->isOwner()){
+            return 'owner';
+        }
+
+        if($this->isAdmin()){
+            return 'admin';
+        }
+
+        if($this->isMechanic()){
+            return 'mechanic';
+        }
+
+        return 'user';
+    }
+
+    public function isOwner() : bool
+    {
+        return $this->roles()->get()->where('name', 'OWNER')->first() != null;
+    }
+
+    public function isAdmin() : bool
+    {
+        return $this->roles()->get()->where('name', 'ADMIN')->first() != null;
+    }
+
+    public function isMechanic() : bool
+    {
+        return $this->roles()->get()->where('name', 'MECHANIC')->first() != null;
     }
 
 }

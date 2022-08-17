@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Owner',
             'surname' => 'Owner',
             'email' => 'owner@carshistory.com',
-            'password' => Hash::make('Admin123@')
+            'password' => Hash::make('Admin123@'),
+            'active' => true
         ]);
 
         Role::factory()->create([
