@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\CarManufacturer;
+use App\Models\CarModel;
+use App\Models\FuelType;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -56,6 +59,67 @@ class DatabaseSeeder extends Seeder
                 'user_id' => 1,
                 'role_id' => 4
             ]]);
+
+        CarManufacturer::factory()->create([
+            'name' => 'Mercedes',
+        ]);
+
+        CarManufacturer::factory()->create([
+            'name' => 'Toyota',
+        ]);
+
+        CarManufacturer::factory()->create([
+            'name' => 'Volkswagen',
+        ]);
+
+        CarManufacturer::factory()->create([
+            'name' => 'Audi',
+        ]);
+
+        CarManufacturer::factory()->create([
+            'name' => 'BMW',
+        ]);
+
+        CarModel::factory()->create([
+            'name' => 'E 220',
+            'car_manufacturer_id' => 1
+        ]);
+
+        CarModel::factory()->create([
+            'name' => 'Corolla',
+            'car_manufacturer_id' => 2
+        ]);
+
+        CarModel::factory()->create([
+            'name' => 'Passat CC',
+            'car_manufacturer_id' => 3
+        ]);
+
+        CarModel::factory()->create([
+            'name' => 'A5',
+            'car_manufacturer_id' => 4
+        ]);
+
+        CarModel::factory()->create([
+            'name' => '325',
+            'car_manufacturer_id' => 5
+        ]);
+
+        FuelType::factory()->create([
+            'name' => 'Benzyna',
+        ]);
+
+        FuelType::factory()->create([
+            'name' => 'Olej napędowy(diesel)',
+        ]);
+
+        FuelType::factory()->create([
+            'name' => 'Beznyna + LPG',
+        ]);
+
+        FuelType::factory()->create([
+            'name' => 'Elektryk',
+        ]);
 
     }
 }
