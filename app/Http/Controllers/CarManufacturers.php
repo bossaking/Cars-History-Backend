@@ -16,6 +16,12 @@ class CarManufacturers extends Controller
     public function getAll(Request $request): \Illuminate\Http\Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory
     {
         $carManufacturers = CarManufacturer::all();
+
+        foreach ($carManufacturers as $manufacturer){
+            $modelsCount = count($manufacturer->carModels);
+            $manufacturer['modelsCount'] = $modelsCount;
+        }
+
         return response(['carManufacturers' => $carManufacturers], 200);
     }
 
@@ -34,7 +40,8 @@ class CarManufacturers extends Controller
             $response = ['result' => false, 'message' => 'Car manufacturer is not found'];
             return response($response, 404);
         }else{
-            $response = ['manufacturer' => $manufacturer->load('carModels')];
+            $manufacturer['carModels'] = $manufacturer->carModels;
+            $response = ['manufacturer' => $manufacturer];
             return response($response, 200);
         }
     }
