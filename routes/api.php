@@ -36,6 +36,7 @@ Route::middleware(['auth:api', 'role'])->group(function() {
         Route::put('/fuel_types/edit', [FuelTypes::class, 'editFuelType']);
 
         Route::get('/not_available_users', [UserController::class, 'getNotAvailableUsers']);
+        Route::get('/not_available_users_count', [UserController::class, 'getNotAvailableUsersCount']);
         Route::post('/user_account_decision', [UserController::class, 'userAccountDecision']);
     });
 

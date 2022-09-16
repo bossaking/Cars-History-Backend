@@ -21,6 +21,12 @@ class UserController extends Controller
         return response(['users' => $users], 200);
     }
 
+    public function getNotAvailableUsersCount(Request $request): \Illuminate\Http\Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory
+    {
+        $users = User::where('active', false)->get();
+        return response(['usersCount' => count($users)], 200);
+    }
+
     public function userAccountDecision(Request $request): \Illuminate\Http\Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory
     {
         $validator = Validator::make($request->all(), [
